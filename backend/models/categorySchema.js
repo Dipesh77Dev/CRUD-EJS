@@ -21,3 +21,8 @@ const CategorySchema = new mongoose.Schema(
 module.exports = mongoose.model('Category', CategorySchema);
 
 // We will get error if we keep CategoryId and in routes if we give categoryId.
+
+// date_added : {
+//   type : Date,
+//   default : Date.now
+// },
