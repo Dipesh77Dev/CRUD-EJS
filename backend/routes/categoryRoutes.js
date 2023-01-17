@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const Category = require("../models/categorySchema");
+const upload = require("../middleware/filehelper.js");
 
 // @route   GET category/getCategory
 // @desc    Get all categories
@@ -21,12 +22,13 @@ router.get("/getCategory", async (req, res) => {
 // @route   POST category/addCategory
 // @desc    Add all categories
 // @access  Public
-router.post("/addCategory", async (req, res) => {
+router.post("/addCategory", upload.single("imageData"), async (req, res) => {
   try {
     const addCategory = await Category.create({
       categoryId: req.body.categoryId,
       categoryName: req.body.categoryName,
       categoryDescription: req.body.categoryDescription,
+      categoryImage: req.file.path,
       // categoryImage: req.body.categoryImage,
     });
     res.send({

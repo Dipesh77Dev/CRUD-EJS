@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const Product = require("../models/productSchema");
+const Product = require("../models/productSchema.js");
+const upload = require("../middleware/filehelper.js");
+// const {upload} = require("../middleware/filehelper.js");
 
 // @route   GET product/getProducts
-// @desc    Get all products
+// @desc    Get all products with pagination
 // @access  Public
 router.get("/getProducts", async (req, res) => {
   try {
@@ -18,8 +20,23 @@ router.get("/getProducts", async (req, res) => {
         select: ["categoryName", "categoryId"],
       });
     res.send({
-      message: "Got all Products succesfully...",
+      message: "Got all Products with pagination succesfully...",
       getProducts,
+    });
+  } catch (err) {
+    res.status(400).send({ error: err });
+  }
+});
+
+// @route   GET product/getAllProducts
+// @desc    Get all products
+// @access  Public
+router.get("/getAllProducts", async (req, res) => {
+  try {
+    const getAllProducts = await Product.find();
+    res.send({
+      message: "Got all Products succesfully...",
+      getAllProducts,
     });
   } catch (err) {
     res.status(400).send({ error: err });
@@ -29,7 +46,7 @@ router.get("/getProducts", async (req, res) => {
 // @route   POST product/addProduct
 // @desc    Add all products
 // @access  Public
-router.post("/addProduct", async (req, res) => {
+router.post("/addProduct", upload.single("imageData"), async (req, res) => {
   try {
     const addProduct = await Product.create({
       category: req.body.category,
@@ -37,7 +54,7 @@ router.post("/addProduct", async (req, res) => {
       productName: req.body.productName,
       productDescription: req.body.productDescription,
       productPrice: req.body.productPrice,
-      // productImage: req.file.path,
+      productImage: req.file.path,
     });
     res.send({
       addProduct,
