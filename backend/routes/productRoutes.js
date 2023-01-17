@@ -8,16 +8,15 @@ const Product = require("../models/productSchema");
 // @access  Public
 router.get("/getProducts", async (req, res) => {
   try {
-    const getProducts = await Product.find({});
-    // if (getProducts<0) {
-    //   res.send({ message: "Plz add some products" });
-    //   // return res.status(404).json({})
-    // } else {
-    //   res.send({
-    //     message: "Got all Products succesfully...",
-    //     getProducts,
-    //   });
-    // }
+    // pagination -
+    const { page = 1, limit = 5 } = req.query;
+    const getProducts = await Product.find()
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .populate({
+        path: "category",
+        select: ["categoryName", "categoryId"],
+      });
     res.send({
       message: "Got all Products succesfully...",
       getProducts,
@@ -38,7 +37,7 @@ router.post("/addProduct", async (req, res) => {
       productName: req.body.productName,
       productDescription: req.body.productDescription,
       productPrice: req.body.productPrice,
-      productImage: req.body.productImage,
+      // productImage: req.file.path,
     });
     res.send({
       addProduct,
@@ -113,3 +112,16 @@ router.delete("/deleteAllProduct", async (req, res) => {
 });
 
 module.exports = router;
+
+/*
+if(getProducts<0){
+  res.send({ message: "Plz add some products" });
+  // return res.status(404).json({})
+  else {
+    res.send({
+      message: "Got all Products succesfully...",
+      getProducts,
+    });
+  }
+}
+*/

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
-// const { ObjectId } = mongoose.Schema.Types; - type: ObjectId
+// const { ObjectId }= mongoose.Schema.Types;
+const SchemaObjectId = mongoose.Schema.Types.ObjectId;
 
 const ProductSchema = new mongoose.Schema(
   {
@@ -21,12 +22,14 @@ const ProductSchema = new mongoose.Schema(
       // required: true
     },
     category: {
-      type: mongoose.ObjectId,
-      ref: "Category",
+      // type: mongoose.Schema.Types.ObjectId,
+      // type: ObjectId,
+      type: SchemaObjectId,
+      ref: "category",
       // required: true,
     },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Product", ProductSchema);
+module.exports = mongoose.model("product", ProductSchema);

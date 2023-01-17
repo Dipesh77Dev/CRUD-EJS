@@ -27,7 +27,7 @@ router.post("/addCategory", async (req, res) => {
       categoryId: req.body.categoryId,
       categoryName: req.body.categoryName,
       categoryDescription: req.body.categoryDescription,
-      categoryImage: req.body.categoryImage
+      // categoryImage: req.body.categoryImage,
     });
     res.send({
       addCategory,

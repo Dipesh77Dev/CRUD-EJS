@@ -18,7 +18,7 @@ const CategorySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Category', CategorySchema);
+module.exports = mongoose.model('category', CategorySchema);
 
 // We will get error if we keep CategoryId and in routes if we give categoryId.
 
