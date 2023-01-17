@@ -37,6 +37,9 @@ app.get("/test", (req, res) => {
   res.send("Testing API!!...");
 });
 
+// setting ejs engine template for frontend -
+app.set('view engine', 'ejs');
+
 // calling routes
 // app.use('/product', productRouter.router);
 app.use('/api/product', require('./routes/productRoutes.js'));

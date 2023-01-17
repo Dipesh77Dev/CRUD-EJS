@@ -19,10 +19,11 @@ router.get("/getProducts", async (req, res) => {
         path: "category",
         select: ["categoryName", "categoryId"],
       });
-    res.send({
-      message: "Got all Products with pagination succesfully...",
-      getProducts,
-    });
+    // res.send({
+    //   message: "Got all Products with pagination succesfully...",
+    //   getProducts,
+    // });
+    res.render('product', { title: 'Product List', "products" : getProducts});
   } catch (err) {
     res.status(400).send({ error: err });
   }
@@ -34,10 +35,11 @@ router.get("/getProducts", async (req, res) => {
 router.get("/getAllProducts", async (req, res) => {
   try {
     const getAllProducts = await Product.find();
-    res.send({
-      message: "Got all Products succesfully...",
-      getAllProducts,
-    });
+    // res.send({
+    //   message: "Got all Products succesfully...",
+    //   getAllProducts,
+    // });
+    res.render('product', { title: 'Product List', "products" : getAllProducts});
   } catch (err) {
     res.status(400).send({ error: err });
   }

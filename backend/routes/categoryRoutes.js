@@ -10,10 +10,11 @@ const upload = require("../middleware/filehelper.js");
 router.get("/getCategory", async (req, res) => {
   try {
     const getCategory = await Category.find({});
-    res.send({
-      message: "Got all Categories succesfully...",
-      getCategory,
-    });
+    // res.send({
+    //   message: "Got all Categories succesfully...",
+    //   getCategory,
+    // });
+    res.render('category', { title: 'Category List', "categories" : getCategory});
   } catch (err) {
     res.status(400).send({ error: err });
   }
