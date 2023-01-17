@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+// const { ObjectId } = mongoose.Schema.Types; - type: ObjectId
+
 const ProductSchema = new mongoose.Schema(
   {
     productId: Number,
@@ -15,14 +17,14 @@ const ProductSchema = new mongoose.Schema(
       type: Number,
     },
     productImage: {
-      type: Array,
+      type: Array, // String
       // required: true
     },
-    // category: {
-    //   type: ObjectId,
-    //   ref: "Category",
-    //   // required: true,
-    // },
+    category: {
+      type: mongoose.ObjectId,
+      ref: "Category",
+      // required: true,
+    },
   },
   { timestamps: true }
 );

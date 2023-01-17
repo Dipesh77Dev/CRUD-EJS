@@ -40,6 +40,7 @@ app.get("/test", (req, res) => {
 // calling routes
 // app.use('/product', productRouter.router);
 app.use('/api/product', require('./routes/productRoutes.js'));
+app.use('/api/category', require('./routes/categoryRoutes.js'));
 
 // listening to port..
 // app.listen(PORT, () => {

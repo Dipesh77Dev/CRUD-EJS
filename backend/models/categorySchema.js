@@ -2,13 +2,22 @@ const mongoose = require("mongoose");
 
 const CategorySchema = new mongoose.Schema(
   {
-    CategoryId: String,
-    CategoryName: {
+    categoryId: Number,
+    categoryName: {
       type: String,
       required: true,
     },
+    categoryDescription: {
+      type: String,
+      // required: true,
+    },
+    categoryImage:{
+      type: String,
+    },
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
 module.exports = mongoose.model('Category', CategorySchema);
+
+// We will get error if we keep CategoryId and in routes if we give categoryId.

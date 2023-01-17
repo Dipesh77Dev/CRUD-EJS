@@ -33,6 +33,7 @@ router.get("/getProducts", async (req, res) => {
 router.post("/addProduct", async (req, res) => {
   try {
     const addProduct = await Product.create({
+      category: req.body.category,
       productId: req.body.productId,
       productName: req.body.productName,
       productDescription: req.body.productDescription,
