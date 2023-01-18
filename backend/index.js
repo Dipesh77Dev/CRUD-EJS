@@ -17,7 +17,8 @@ const DB_URI = process.env.MONGO_URI;
 
 // db connection -
 mongoose
-  .connect(DB_URI, { // process.env.MONGO_URI
+  .connect(DB_URI, {
+    // process.env.MONGO_URI
     useUnifiedTopology: true,
     useNewUrlParser: true,
   })
@@ -32,18 +33,30 @@ mongoose
     console.log("Cannot connect to the database!", err);
   });
 
+// setting ejs engine template for frontend -
+app.set("view engine", "ejs");
+
 // testing api
 app.get("/test", (req, res) => {
-  res.send("Testing API!!...");
+  // res.send("Testing API!!...");
+  res.json("Testing..");
 });
 
-// setting ejs engine template for frontend -
-app.set('view engine', 'ejs');
+app.get("/welcome", (req, res) => {
+  res.send("Hello ALL!!");
+  // res.json({message: 'Hello All!'});
+  // res.json(<h1>Hello All! </h1>) - Error
+  // res.json("Hello All!");
+});
+
+app.get("/home", (req, res) => {
+  res.render("home", { title: "Home Page" });
+});
 
 // calling routes
 // app.use('/product', productRouter.router);
-app.use('/api/product', require('./routes/productRoutes.js'));
-app.use('/api/category', require('./routes/categoryRoutes.js'));
+app.use("/api/product", require("./routes/productRoutes.js"));
+app.use("/api/category", require("./routes/categoryRoutes.js"));
 
 // listening to port..
 // app.listen(PORT, () => {

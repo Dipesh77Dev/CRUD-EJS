@@ -1,0 +1,89 @@
+<%- include('layout/header') %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 mx-auto mt-4">
+      <div class="card shadow">
+        <div class="card-header bg-primary">
+          <h3 class="text-light">Add New PRODUCT</h3>
+        </div>
+        <div class="card-body p-4">
+          <!-- <form action="/addProduct" method="post" id="add-form" enctype="multipart/form-data"></form> -->
+          <form action="http://localhost:4000/api/product/addProduct" method="post" id="add-form"></form>
+            <div class="mb-3">
+                <label for="id"> Product-Id </label>
+                <input
+                  type="number"
+                  name="productId"
+                  class="form-control form-control-lg"
+                  placeholder="Product - ID"
+                />
+              </div>
+            <div class="mb-3">
+              <label for="name"> Name </label>
+              <input
+                type="text"
+                name="productName"
+                class="form-control form-control-lg"
+                placeholder="PRODUCT NAME"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="price"> Price </label>
+              <input
+                type="number"
+                name="productPrice"
+                class="form-control form-control-lg"
+                placeholder="PRODUCT PRICE"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="description"> Description </label>
+              <input
+                type="text"
+                name="productDescription"
+                class="form-control form-control-lg"
+                placeholder="PRODUCT DESCRIPTION"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="category"> Category </label>
+              <input
+                type="text"
+                name="category"
+                class="form-control form-control-lg"
+                placeholder="PRODUCT CATEGORY"
+              />
+            </div>
+            <!-- <div class="mb-3">
+                <label for="image"> Image </label>
+                <input
+                  type="file"
+                  name="productImage"
+                  class="form-control form-control-lg"
+                  placeholder="PRODUCT IMAGE"
+                  multiple
+                />
+              </div> -->
+              <!-- <input 
+              class="btn btn-primary" 
+              type="submit" 
+              style="border-radius: 4px;" 
+              name="cashbackfiles" 
+              value="Upload" /> -->
+            <div class="mb-3 d-grid">
+              <input
+                type="submit"
+                name="submit"
+                value="Add Product"
+                class="btn btn-primary btn-lg"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('layout/footer') %>

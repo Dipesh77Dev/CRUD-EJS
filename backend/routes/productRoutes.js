@@ -23,7 +23,7 @@ router.get("/getProducts", async (req, res) => {
     //   message: "Got all Products with pagination succesfully...",
     //   getProducts,
     // });
-    res.render('product', { title: 'Product List', "products" : getProducts});
+    res.render("product_list", { title: "Product List", products: getProducts });
   } catch (err) {
     res.status(400).send({ error: err });
   }
@@ -39,10 +39,15 @@ router.get("/getAllProducts", async (req, res) => {
     //   message: "Got all Products succesfully...",
     //   getAllProducts,
     // });
-    res.render('product', { title: 'Product List', "products" : getAllProducts});
+    res.render("product_list", { title: "Product List", products: getAllProducts });
   } catch (err) {
     res.status(400).send({ error: err });
   }
+});
+
+// Getting addProduct Form
+router.get("/addProduct", (req, res) => {
+  res.render("add_product", { title: "Add Product Form" });
 });
 
 // @route   POST product/addProduct
@@ -62,6 +67,7 @@ router.post("/addProduct", upload.single("imageData"), async (req, res) => {
       addProduct,
       message: "Product has been added successfully...",
     });
+    res.redirect("/test");
   } catch (err) {
     res.status(400).send({ error: err });
   }
