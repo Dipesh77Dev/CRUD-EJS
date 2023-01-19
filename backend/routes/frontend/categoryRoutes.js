@@ -1,12 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const Category = require("../models/categorySchema");
-const upload = require("../middleware/filehelper.js");
+const Category = require("../../models/categorySchema.js");
+const upload = require("../../middleware/filehelper.js");
 
-// @route   GET category/getCategory
-// @desc    Get all categories
-// @access  Public
 router.get("/getCategory", async (req, res) => {
   try {
     const getCategory = await Category.find({});
@@ -23,9 +20,6 @@ router.get("/getCategory", async (req, res) => {
   }
 });
 
-// @route   POST category/addCategory
-// @desc    Add all categories
-// @access  Public
 router.post("/addCategory", upload.single("imageData"), async (req, res) => {
   try {
     const addCategory = await Category.create({
@@ -44,9 +38,6 @@ router.post("/addCategory", upload.single("imageData"), async (req, res) => {
   }
 });
 
-// @route   GET category/getCategoryById
-// @desc    Get category by id
-// @access  Public
 router.get("/getCategoryById/:id", async (req, res) => {
   try {
     const getCategoryById = await Category.findById(req.params.id);
@@ -59,9 +50,6 @@ router.get("/getCategoryById/:id", async (req, res) => {
   }
 });
 
-// @route   PATCH category/updateCategory
-// @desc    update category by id
-// @access  Public
 router.patch("/updateCategory/:id", async (req, res) => {
   try {
     const updateCategoryById = await Category.findByIdAndUpdate(
@@ -77,9 +65,6 @@ router.patch("/updateCategory/:id", async (req, res) => {
   }
 });
 
-// @route   DELETE category/deleteCategory
-// @desc    delete category by id
-// @access  Public
 router.delete("/deleteCategory/:id", async (req, res) => {
   try {
     const deleteCategoryById = await Category.findByIdAndRemove(req.params.id);
@@ -98,9 +83,6 @@ router.delete("/deleteCategory/:id", async (req, res) => {
   }
 });
 
-// @route   DELETE category/deleteAllCategory
-// @desc    delete all category
-// @access  Public
 router.delete("/deleteAllCategory", async (req, res) => {
   try {
     const deleteAllCategory = await Category.deleteMany({});

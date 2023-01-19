@@ -1,13 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const Product = require("../models/productSchema.js");
-const upload = require("../middleware/filehelper.js");
-// const {upload} = require("../middleware/filehelper.js");
+const Product = require("../../models/productSchema.js");
+const upload = require("../../middleware/filehelper.js");
 
-// @route   GET product/getProducts
-// @desc    Get all products with pagination
-// @access  Public
 router.get("/getProducts", async (req, res) => {
   try {
     // pagination -
@@ -30,9 +26,6 @@ router.get("/getProducts", async (req, res) => {
   }
 });
 
-// @route   GET product/getAllProducts
-// @desc    Get all products
-// @access  Public
 router.get("/getAllProducts", async (req, res) => {
   try {
     const getAllProducts = await Product.find();
@@ -51,9 +44,6 @@ router.get("/addProduct", (req, res) => {
   res.render("add_product", { title: "Add Product Form" });
 });
 
-// @route   POST product/addProduct
-// @desc    Add all products
-// @access  Public
 router.post("/addProduct", upload.single("imageData"), async (req, res) => {
   try {
     const addProduct = await Product.create({
@@ -74,9 +64,6 @@ router.post("/addProduct", upload.single("imageData"), async (req, res) => {
   }
 });
 
-// @route   GET product/getProductById
-// @desc    Get product by id
-// @access  Public
 router.get("/getProductById/:id", async (req, res) => {
   try {
     const getProductById = await Product.findById(req.params.id);
@@ -89,9 +76,6 @@ router.get("/getProductById/:id", async (req, res) => {
   }
 });
 
-// @route   PATCH product/updateProduct
-// @desc    update product by id
-// @access  Public
 router.patch("/updateProduct/:id", async (req, res) => {
   try {
     const updateProductById = await Product.findByIdAndUpdate(
@@ -107,9 +91,6 @@ router.patch("/updateProduct/:id", async (req, res) => {
   }
 });
 
-// @route   DELETE product/deleteProduct
-// @desc    delete product by id
-// @access  Public
 router.get("/deleteProduct/:id", async (req, res) => {
   try {
     const deleteProductById = await Product.findByIdAndRemove(req.params.id);
@@ -122,9 +103,6 @@ router.get("/deleteProduct/:id", async (req, res) => {
   }
 });
 
-// @route   DELETE product/deleteAllProduct
-// @desc    delete all product
-// @access  Public
 router.delete("/deleteAllProduct", async (req, res) => {
   try {
     const deleteAllProduct = await Product.deleteMany({});
@@ -139,15 +117,4 @@ router.delete("/deleteAllProduct", async (req, res) => {
 
 module.exports = router;
 
-/*
-if(getProducts<0){
-  res.send({ message: "Plz add some products" });
-  // return res.status(404).json({})
-  else {
-    res.send({
-      message: "Got all Products succesfully...",
-      getProducts,
-    });
-  }
-}
-*/
+

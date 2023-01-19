@@ -55,8 +55,14 @@ app.get("/home", (req, res) => {
 
 // calling routes
 // app.use('/product', productRouter.router);
+
+// Only Backend-Postman =>
 app.use("/api/product", require("./routes/productRoutes.js"));
 app.use("/api/category", require("./routes/categoryRoutes.js"));
+
+// Frontend =>
+app.use("/product", require("./routes/frontend/productRoutes.js"));
+app.use("/category", require("./routes/frontend/categoryRoutes.js"));
 
 // listening to port..
 // app.listen(PORT, () => {
