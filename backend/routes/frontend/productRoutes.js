@@ -19,10 +19,12 @@ router.get("/getProducts", async (req, res) => {
         path: "category",
         select: ["categoryName", "categoryId"],
       });
-    res.send({
-      message: "Got all Products with pagination succesfully...",
-      getProducts,
-    });
+    // res.send({
+    //   message: "Got all Products with pagination succesfully...",
+    //   getProducts,
+    // });
+    res.render("product_list", { title: "Product List", products: getProducts });
+    // res.redirect('/product_list');
   } catch (err) {
     res.status(400).send({ error: err });
   }
@@ -34,13 +36,19 @@ router.get("/getProducts", async (req, res) => {
 router.get("/getAllProducts", async (req, res) => {
   try {
     const getAllProducts = await Product.find();
-    res.send({
-      message: "Got all Products succesfully...",
-      getAllProducts,
-    });
+    // res.send({
+    //   message: "Got all Products succesfully...",
+    //   getAllProducts,
+    // });
+    res.render("product_list", { title: "Product List", products: getAllProducts });
   } catch (err) {
     res.status(400).send({ error: err });
   }
+});
+
+// Getting addProduct Form
+router.get("/addProduct", (req, res) => {
+  res.render("add_product", { title: "Add Product Form" });
 });
 
 // @route   POST product/addProduct
@@ -60,6 +68,7 @@ router.post("/addProduct", upload.single("imageData"), async (req, res) => {
       addProduct,
       message: "Product has been added successfully...",
     });
+    res.redirect("/test");
   } catch (err) {
     res.status(400).send({ error: err });
   }
@@ -101,7 +110,7 @@ router.patch("/updateProduct/:id", async (req, res) => {
 // @route   DELETE product/deleteProduct
 // @desc    delete product by id
 // @access  Public
-router.delete("/deleteProduct/:id", async (req, res) => {
+router.get("/deleteProduct/:id", async (req, res) => {
   try {
     const deleteProductById = await Product.findByIdAndRemove(req.params.id);
     res.send({

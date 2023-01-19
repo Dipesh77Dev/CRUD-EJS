@@ -10,10 +10,14 @@ const upload = require("../middleware/filehelper.js");
 router.get("/getCategory", async (req, res) => {
   try {
     const getCategory = await Category.find({});
-    res.send({
-      message: "Got all Categories succesfully...",
-      getCategory,
+    res.render("category_list", {
+      title: "Category List",
+      categories: getCategory,
     });
+    // res.send({
+    //   message: "Got all Categories succesfully...",
+    //   getCategory,
+    // });
   } catch (err) {
     res.status(400).send({ error: err });
   }
@@ -79,10 +83,16 @@ router.patch("/updateCategory/:id", async (req, res) => {
 router.delete("/deleteCategory/:id", async (req, res) => {
   try {
     const deleteCategoryById = await Category.findByIdAndRemove(req.params.id);
-    res.send({
-      deleteCategoryById,
-      message: "Category has been removed successfully...",
-    });
+    // res.send({
+    //   deleteCategoryById,
+    //   message: "Category has been removed successfully...",
+    // });
+    if (err) {
+      res.json({ error: err });
+    } else {
+      res.send({ message: "Category has been removed successfully..." });
+    }
+    res.redirect('/home');
   } catch (err) {
     res.status(400).send({ error: err });
   }
