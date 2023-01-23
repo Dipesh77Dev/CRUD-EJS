@@ -12,9 +12,6 @@ app.use(express.json());
 const PORT = 4000; // replace 5000 by 4000
 const DB_URI = process.env.MONGO_URI;
 
-// setting routes -
-// const productRoutes = require('./routes/productRoutes.js');
-
 // db connection -
 mongoose
   .connect(DB_URI, {
@@ -54,17 +51,22 @@ app.get("/home", (req, res) => {
 });
 
 // calling routes
-// app.use('/product', productRouter.router);
-
 // Only Backend-Postman =>
 app.use("/api/product", require("./routes/productRoutes.js"));
 app.use("/api/category", require("./routes/categoryRoutes.js"));
 
 // Frontend =>
-app.use("/product", require("./routes/frontend/productRoutes.js"));
-app.use("/category", require("./routes/frontend/categoryRoutes.js"));
+app.use("", require("./routes/frontend/productRoutes.js"));
+app.use("", require("./routes/frontend/categoryRoutes.js"));
+// app.use("/product", require("./routes/frontend/productRoutes.js"));
+// app.use("/category", require("./routes/frontend/categoryRoutes.js"));
 
-// listening to port..
-// app.listen(PORT, () => {
-//   console.log(`Listening on ${PORT}`);
-// });
+/*
+// listening to port.. - 
+app.listen(PORT, () => {
+  console.log(`Listening on ${PORT}`);
+});
+// setting routes -
+const productRoutes = require('./routes/productRoutes.js');
+app.use('/product', productRouter.router);
+*/

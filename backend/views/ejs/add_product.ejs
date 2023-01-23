@@ -9,9 +9,9 @@
         </div>
         <div class="card-body p-4">
           <!-- <form action="/addProduct" method="post" id="add-form" enctype="multipart/form-data"></form> -->
-          <form action="http://localhost:4000/api/product/addProduct" method="post" id="add-form"></form>
+          <form action="/addProduct" method="post" id="add-form"></form>
             <div class="mb-3">
-                <label for="id"> Product-Id </label>
+                <label for="productId"> Product-Id </label>
                 <input
                   type="number"
                   name="productId"
@@ -20,7 +20,7 @@
                 />
               </div>
             <div class="mb-3">
-              <label for="name"> Name </label>
+              <label for="productName"> Name </label>
               <input
                 type="text"
                 name="productName"
@@ -29,7 +29,7 @@
               />
             </div>
             <div class="mb-3">
-              <label for="price"> Price </label>
+              <label for="productPrice"> Price </label>
               <input
                 type="number"
                 name="productPrice"
@@ -38,7 +38,7 @@
               />
             </div>
             <div class="mb-3">
-              <label for="description"> Description </label>
+              <label for="productDescription"> Description </label>
               <input
                 type="text"
                 name="productDescription"
@@ -46,7 +46,7 @@
                 placeholder="PRODUCT DESCRIPTION"
               />
             </div>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
               <label for="category"> Category </label>
               <input
                 type="text"
@@ -54,7 +54,7 @@
                 class="form-control form-control-lg"
                 placeholder="PRODUCT CATEGORY"
               />
-            </div>
+            </div> -->
             <!-- <div class="mb-3">
                 <label for="image"> Image </label>
                 <input
